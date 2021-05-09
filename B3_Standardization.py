@@ -34,23 +34,27 @@ def Standardization( data = None ):
 		'0.8 - 1.0': 0,
 	}
 
-	for item in data:
-		if 0 <= item[ 0 ] <= 0.2: line[ '0.0 - 0.2' ] += 1
-		elif 0.2 < item[ 0 ] <= 0.4: line[ '0.2 - 0.4' ] += 1
-		elif 0.4 < item[ 0 ] <= 0.6: line[ '0.4 - 0.6' ] += 1
-		elif 0.6 < item[ 0 ] <= 0.8: line[ '0.6 - 0.8' ] += 1
-		elif 0.8 < item[ 0 ] <= 1: line[ '0.8 - 1.0' ] += 1
+	for i in data:
+		curLine = i[ 0 ] / maxLine
+		curWord = i[ 1 ] / maxWord
+		curWOL = i[ 2 ] / maxWOL
 
-		if 0 <= item[ 1 ] <= 0.2: word[ '0.0 - 0.2' ] += 1
-		elif 0.2 < item[ 1 ] <= 0.4: word[ '0.2 - 0.4' ] += 1
-		elif 0.4 < item[ 1 ] <= 0.6: word[ '0.4 - 0.6' ] += 1
-		elif 0.6 < item[ 1 ] <= 0.8: word[ '0.6 - 0.8' ] += 1
-		elif 0.8 < item[ 1 ] <= 1: word[ '0.8 - 1.0' ] += 1
+		if 0 <= curLine <= 0.2: line[ '0.0 - 0.2' ] += 1
+		elif 0.2 < curLine <= 0.4: line[ '0.2 - 0.4' ] += 1
+		elif 0.4 < curLine <= 0.6: line[ '0.4 - 0.6' ] += 1
+		elif 0.6 < curLine <= 0.8: line[ '0.6 - 0.8' ] += 1
+		elif 0.8 < curLine <= 1: line[ '0.8 - 1.0' ] += 1
 
-		if 0 <= item[ 2 ] <= 0.2: wol[ '0.0 - 0.2' ] += 1
-		elif 0.2 < item[ 2 ] <= 0.4: wol[ '0.2 - 0.4' ] += 1
-		elif 0.4 < item[ 2 ] <= 0.6: wol[ '0.4 - 0.6' ] += 1
-		elif 0.6 < item[ 2 ] <= 0.8: wol[ '0.6 - 0.8' ] += 1
-		elif 0.8 < item[ 2 ] <= 1: wol[ '0.8 - 1.0' ] += 1
+		if 0 <= curWord <= 0.2: word[ '0.0 - 0.2' ] += 1
+		elif 0.2 < curWord <= 0.4: word[ '0.2 - 0.4' ] += 1
+		elif 0.4 < curWord <= 0.6: word[ '0.4 - 0.6' ] += 1
+		elif 0.6 < curWord <= 0.8: word[ '0.6 - 0.8' ] += 1
+		elif 0.8 < curWord <= 1: word[ '0.8 - 1.0' ] += 1
 
-	return ( ( line, 'Line', maxLine ), ( word, 'Word', maxWord ), ( wol, 'Words per Line', maxWOL ) )
+		if 0 <= curWOL <= 0.2: wol[ '0.0 - 0.2' ] += 1
+		elif 0.2 < curWOL <= 0.4: wol[ '0.2 - 0.4' ] += 1
+		elif 0.4 < curWOL <= 0.6: wol[ '0.4 - 0.6' ] += 1
+		elif 0.6 < curWOL <= 0.8: wol[ '0.6 - 0.8' ] += 1
+		elif 0.8 < curWOL <= 1: wol[ '0.8 - 1.0' ] += 1
+
+	return [ ( line, 'Line', maxLine ), ( word, 'Word', maxWord ), ( wol, 'Words per Line', maxWOL ) ]

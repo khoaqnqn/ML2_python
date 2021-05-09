@@ -27,14 +27,17 @@ def ReadItem( item = None, labelPath = None ):
 
 	return ( countLines, len( words ), len( words ) / countLines )
 
-def ReadLabel( label = None, newFolder = 'dataset' ):
+def ReadLabel( label = None, newFolder = 'dataset', multi = False ):
 	labelPath = os.path.join( os.getcwd(), newFolder, label )
 
 	if not label or not os.path.exists( labelPath ): return None
 
-	# make colors
-	pool = mp.Pool( mp.cpu_count() - 1 )
-	results = pool.starmap( ReadItem, [ ( item, labelPath ) for item in tqdm( os.listdir( labelPath ) ) ] )
-	pool.close()
+	if multi:
+		# make colors
+		pool = mp.Pool( mp.cpu_count() - 1 )
+		results = pool.starmap( ReadItem, [ ( item, labelPath ) for item in tqdm( os.listdir( labelPath ) ) ] )
+		pool.close()
+	else:
+		results = [ ReadItem( item, labelPath ) for item in os.listdir( labelPath ) ]
 
 	return [ results, label ]

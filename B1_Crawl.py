@@ -2,7 +2,6 @@ import os
 import time
 import requests
 import json
-import multiprocessing as mp
 from slugify import slugify
 from bs4 import BeautifulSoup
 from pathlib import Path
