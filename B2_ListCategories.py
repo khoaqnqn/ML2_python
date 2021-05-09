@@ -1,4 +1,4 @@
 import os
 
-def ListCategories():
-	return os.listdir( os.path.join( os.getcwd(), 'dataset' ) )
+def ListCategories( newFolder = 'dataset' ):
+	return os.listdir( os.path.join( os.getcwd(), newFolder ) )

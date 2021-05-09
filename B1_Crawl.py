@@ -10,20 +10,6 @@ from pathlib import Path
 total = {}
 roundedItemsPerCategory = 500
 
-pwd = os.path.join( os.getcwd(), 'dataset' )
-Path( pwd ).mkdir( parents = True, exist_ok=True )
-logPath = os.path.join( pwd, f'log-dataset.txt' )
-
-if not os.path.exists( logPath ):
-	with open( logPath, 'w+' ) as file:
-		file.write( '' )
-
-def log( msg = '' ):
-	with open( logPath, 'a+' ) as file:
-		file.write( f'{ msg }\n' )
-
-	print( msg )
-
 def getPoemAndCrawl( thumbDOM, parentDir ):
 	aTag = thumbDOM.find( 'a' )
 	parsedTitle = aTag.text.split( '–' )
@@ -63,13 +49,12 @@ def getPoemAndCrawl( thumbDOM, parentDir ):
 	with open( encodedPath, 'w+' ) as file: file.write( entry.text )
 
 	end = time.time()
-	log( '{:2.2f} (ms) - {} - {}'.format( end - start, aTag.text, aTag[ 'href' ] ) )
+	print( '{:2.2f} (ms) - {} - {}'.format( end - start, aTag.text, aTag[ 'href' ] ) )
 
 	return 1
 
 def loopPage( url, page, folderName ):
 	URL = f'{ url }/page/{ page }'
-	log( URL )
 	reqPage = requests.get( URL )
 	domPage = BeautifulSoup( reqPage.text, 'html.parser' )
 	poemsInPage = domPage.findAll( 'h2', { 'class': 'post-box-title' } );
@@ -100,7 +85,10 @@ def loopCat( eachCategory ):
 
 	return 1
 
-def Crawl():
+def Crawl( newFolder = None ):
+	pwd = os.path.join( os.getcwd(), newFolder )
+	Path( pwd ).mkdir( parents = True, exist_ok=True )
+
 	r = requests.get( 'https://thuvientho.com/' )
 	dom = BeautifulSoup( r.text, 'html.parser' )
 	rootCategory = dom.find( 'ul', { 'class': 'menu-sub-content' } )
@@ -109,5 +97,5 @@ def Crawl():
 	for eachCategory in rootCategory.children:
 		loopCat( eachCategory )
 
-	with open( os.path.join( pwd, f'total-dataset.txt' ), 'w+' ) as file:
+	with open( os.path.join( pwd, f'total.txt' ), 'w+' ) as file:
 		file.write( json.dumps( total ) )

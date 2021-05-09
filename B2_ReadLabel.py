@@ -27,8 +27,8 @@ def ReadItem( item = None, labelPath = None ):
 
 	return ( countLines, len( words ), len( words ) / countLines )
 
-def ReadLabel( label = None ):
-	labelPath = os.path.join( os.getcwd(), 'dataset', label )
+def ReadLabel( label = None, newFolder = 'dataset' ):
+	labelPath = os.path.join( os.getcwd(), newFolder, label )
 
 	if not label or not os.path.exists( labelPath ): return None
 

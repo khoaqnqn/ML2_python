@@ -7,9 +7,11 @@ import sys
 
 if __name__ == '__main__':
 	if sys.argv and len( sys.argv ):
-		Crawl()
+		newFolder = sys.argv[ 0 ]
 
-	for category in ListCategories():
+		if newFolder != 'dataset': Crawl( newFolder )
+
+	for category in ListCategories( newFolder ):
 		if category.find( 'bai-tho' ) < 0: continue
 
 		readLabel = ReadLabel( category )
