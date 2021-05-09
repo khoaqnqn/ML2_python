@@ -6,8 +6,10 @@ from B4_Plot import Plot
 import sys
 
 if __name__ == '__main__':
-	if sys.argv and len( sys.argv ):
-		newFolder = sys.argv[ 0 ]
+	newFolder = 'dataset'
+
+	if sys.argv and len( sys.argv ) >= 2:
+		newFolder = sys.argv[ 1 ]
 
 		if newFolder != 'dataset': Crawl( newFolder )
 
