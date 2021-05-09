@@ -8,6 +8,7 @@ from pathlib import Path
 
 total = {}
 roundedItemsPerCategory = 500
+pwd = ''
 
 def getPoemAndCrawl( thumbDOM, parentDir ):
 	aTag = thumbDOM.find( 'a' )
@@ -85,6 +86,7 @@ def loopCat( eachCategory ):
 	return 1
 
 def Crawl( newFolder = None ):
+	global pwd
 	pwd = os.path.join( os.getcwd(), newFolder )
 	Path( pwd ).mkdir( parents = True, exist_ok=True )
 
