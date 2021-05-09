@@ -1,0 +1,77 @@
+
+ 
+
+
+
+
+
+
+
+
+
+Chanh chua thì khế cũng chua
+Yêu dân “điện tử” te tua cuộc đời
+Yêu là sụt áp túi tiền một ít
+Lấy nguồn nào cấp đủ ngõ ra đây?
+Em có biết anh là dân “điên nặng”
+Thêm “tử” vào là chết cả đời trai
+Em nhảy vào đời anh như ánh điện
+Sáng chói lòi như ánh transitor(trăng sáng tỏ)
+Lần đầu gặp anh đây liền quyết định
+Thiết kế tình trong bo mạch tim anh
+Anh nhớ dáng, nhớ hình,anh nhớ bóng
+Anh nhớ em anh nhớ lắm em ơi
+Mắt em sáng như trăm ngàn con led
+Anh nhìn vào say đắm mãi không thôi
+Miệng em cười như hồ quang lóe sáng
+Chết bao người lỡ dính nụ vười em
+Cuộc tình mình dẫu qua nhiều… điện trở
+Chẳng thể nào hạn chế nổi tình ta
+Em tin tưởng tình anh như biển cả
+Vẫn một lòng chung thủy chẳng phôi pha
+Nếu mai này hai đứa lỡ cách xa
+Có hàn,chì,nhựa thông anh thủ sẵn
+Kéo em vào anh nhẹ nhàng bình lặng
+Cuộc đời mình mãi dính chặt vào nhau
+Nhưng em hỡi tình mình sao như tụ
+Nạp –xả hoài, hờn giận mãi chi nhau
+Thân trai tráng anh tung hoành ngang dọc
+Cát bụi trần chẳng che phủ đời anh
+
+
+
+
+
+
+
+Sao em nỡ xem như cục biến thế
+Nén lòng mình để thỏa mãn lòng em
+Hay em muốn anh là con diode
+Thuận một chiều mãi mãi chỉ yêu em
+Xem thêm:  Tình yêu cô thợ may - Hoàng Thị Như Phượng(đôi khi muốn nhưng anh đây không thể
+Biến mình thành con diode zener)
+Vi điều khiển em nhớ hoài tập lệnh:
+TD: MOV đờiem,#đờianh
+CJNE anhyêuem,#emyêuanh,X1
+JMP TĐ
+X1: END
+(chuyển đời mình vào ô nhớ đời em
+So sánh tiếp,không bằng em giận dỗi
+Cuộc tình mình kết thúc kể từ đây)
+Anh hoảng hốt,vội vàng anh năn nỉ:
+JB anhyêuem,$
+(lập trình rồi, anh mãi mãi yêu em)
+Bao câu chuyện nhiều hơn IC số
+Chẳng thể nào anh kể hết ra đây
+Tình ta đẹp như vầng trăng soi sáng
+Tình chúng mình là “bảy tám không năm”(IC 7805-ổn áp)
+
+
+
+
+
+
+
+
+
+
