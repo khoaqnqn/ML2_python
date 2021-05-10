@@ -57,4 +57,4 @@ def Standardization( data = None ):
         elif 0.6 < curWOL <= 0.8: wol[ '0.6 - 0.8' ] += 1
         elif 0.8 < curWOL <= 1: wol[ '0.8 - 1.0' ] += 1
 
-    return [ ( line, 'Line', maxLine ), ( word, 'Word', maxWord ), ( wol, 'Words per Line', maxWOL ) ]
+    return [ ( line, 'Line', maxLine, 'green' ), ( word, 'Word', maxWord, 'yellow' ), ( wol, 'WoL', maxWOL, 'brown' ) ]

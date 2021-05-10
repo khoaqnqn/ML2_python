@@ -11,7 +11,7 @@ def Plot( data = None, category = '', dataset = 'dataset' ):
     Path( figs ).mkdir( parents = True, exist_ok=True )
 
     plt.figure( figsize = ( 18, 3 ) )
-    plt.tight_layout( pad= 3.0 )
+    plt.subplots_adjust( wspace= 0.5 )
     plt.grid( True )
     plt.ylabel( 'Count items' )
 
@@ -19,11 +19,16 @@ def Plot( data = None, category = '', dataset = 'dataset' ):
 
     plotIndex = f'1{ row }'
 
-    for index, i in enumerate( data ):
-        plt.subplot( int( f'{ plotIndex }{ index + 1 }' ) )
-        plt.bar( list( i[ 0 ].keys() ), list( i[ 0 ].values() ), color ='maroon' )
-        plt.xlabel( f'Item { i[ 1 ] } / Max { i[ 1 ] } of { category }' )
-        plt.title( f'Compare to max { i[ 1 ] } of Category { category } ( { i[ 2 ] } )' )
+    for index, item in enumerate( data ):
+        y = list( item[ 0 ].values() )
 
-    plt.savefig( f'{ figs }/{ i[ 1 ] }_{ category }.png' )
-    display( Image( filename = f'{ figs }/{ i[ 1 ] }_{ category }.png' ) )
+        plt.subplot( int( f'{ plotIndex }{ index + 1 }' ) )
+        plt.bar( list( item[ 0 ].keys() ), y, color = item[ 3 ] )
+        plt.xlabel( f'Item { item[ 1 ] } / Max { item[ 1 ] } of { category }' )
+        plt.title( f'{ item[ 1 ] } of { category } ( Max: { item[ 2 ] } )' )
+
+        for index, data in enumerate( y ): plt.text( x = index , y = data , s = str( data ) )
+
+    plt.savefig( f'{ figs }/{ item[ 1 ] }_{ category }.png' )
+    plt.clf()
+    display( Image( filename = f'{ figs }/{ item[ 1 ] }_{ category }.png' ) )
