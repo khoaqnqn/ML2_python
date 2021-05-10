@@ -50,7 +50,7 @@ def getPoemAndCrawl( thumbDOM, parentDir ):
     with open( encodedPath, 'w+' ) as file: file.write( entry.text )
 
     end = time.time()
-    print( '{:2.2f} (ms) - {} - {}'.format( end - start, aTag.text, aTag[ 'href' ] ) )
+    print( '{:2.2f} (s) - {} - {}'.format( end - start, aTag.text, aTag[ 'href' ] ) )
 
     return 1
 
@@ -86,10 +86,14 @@ def loopCategory( eachCategory ):
 
     return 1
 
-def Crawl( newFolder = None ):
+def Crawl( newFolder = None, ItemsPerCategory = roundedItemsPerCategory ):
     global CWD
+    global roundedItemsPerCategory
+
     CWD = os.path.join( os.getcwd(), newFolder )
     Path( CWD ).mkdir( parents = True, exist_ok=True )
+
+    roundedItemsPerCategory = int( ItemsPerCategory )
 
     r = requests.get( 'https://thuvientho.com/' )
     dom = BeautifulSoup( r.text, 'html.parser' )

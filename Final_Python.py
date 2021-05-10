@@ -14,6 +14,7 @@ HELP = '''
 def main():
     dataset = 'dataset'
     enableMultiProcessing = False
+    maxItems = 3
 
     # collect argv from cmd
     if sys.argv and len( sys.argv ) >= 2:
@@ -29,9 +30,12 @@ def main():
             if opt[ :3 ] == '-d:':
                 dataset = opt[ 3: ]
 
+            if opt[ :3 ] == '-i:':
+                maxItems = opt[ 3: ]
+
         # collect new dataset
         if dataset != 'dataset'\
-            and not os.path.exists( os.path.join( os.getcwd(), dataset ) ): Crawl( dataset )
+            and not os.path.exists( os.path.join( os.getcwd(), dataset ) ): Crawl( dataset, maxItems )
 
     # loop over each category
     for category in os.listdir( os.path.join( os.getcwd(), dataset ) ):
@@ -41,7 +45,7 @@ def main():
         readLabel = ReadLabel( category, dataset, enableMultiProcessing )
 
         standardization = Standardization( readLabel[ 0 ] )
-        Plot( standardization, readLabel[ 1 ] )
+        Plot( standardization, readLabel[ 1 ], dataset )
 
 if __name__ == '__main__':
     main()
