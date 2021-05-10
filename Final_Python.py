@@ -9,6 +9,8 @@ HELP = '''
 -mp             : for enable multi processing in some cases
 
 -d:folder-name  : for new dataset with folder-name ( non-space separated )
+
+-i:30           : for max items of each category
 '''
 
 def main():
@@ -45,8 +47,6 @@ def main():
         readLabel = ReadLabel( category, dataset, enableMultiProcessing )
 
         standardization = Standardization( readLabel[ 0 ] )
-
-        print( standardization )
 
         Plot( standardization, readLabel[ 1 ], dataset )
 
