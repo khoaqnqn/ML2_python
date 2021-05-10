@@ -8,7 +8,7 @@ from pathlib import Path
 
 total = {}
 roundedItemsPerCategory = 500
-pwd = ''
+CWD = ''
 
 def getPoemAndCrawl( thumbDOM, parentDir ):
 	aTag = thumbDOM.find( 'a' )
@@ -23,6 +23,7 @@ def getPoemAndCrawl( thumbDOM, parentDir ):
 		return 0
 
 	start = time.time()
+
 	reqPoem = requests.get( aTag[ 'href' ] );
 	domPoem = BeautifulSoup( reqPoem.text, 'html.parser' )
 	entry = domPoem.find( 'div', { 'class': 'entry' } )
@@ -31,7 +32,7 @@ def getPoemAndCrawl( thumbDOM, parentDir ):
 
 	encodedName = '{}-{:04d}.txt'.format( parentDir, total[ parentDir ][ 'i' ] )
 	encodedPath = os.path.join(
-		pwd,
+		CWD,
 		parentDir,
 		'{}-{:04d}.txt'.format( parentDir, total[ parentDir ][ 'i' ] )
 	)
@@ -66,14 +67,14 @@ def loopPage( url, page, folderName ):
 	try: return nextPage.find( 'a' ).text
 	except: return 0
 
-def loopCat( eachCategory ):
+def loopCategory( eachCategory ):
 	aTag = eachCategory.find( 'a' )
 
 	if aTag == -1: return 0
 
 	folderName = slugify( aTag.text )
 
-	Path( os.path.join( pwd, folderName ) ).mkdir( parents = True, exist_ok=True )
+	Path( os.path.join( CWD, folderName ) ).mkdir( parents = True, exist_ok=True )
 	total[ folderName ] = { 'i': 0, 'items': [], 'ignoredItems': [] }
 
 	hasLoop = True
@@ -86,9 +87,9 @@ def loopCat( eachCategory ):
 	return 1
 
 def Crawl( newFolder = None ):
-	global pwd
-	pwd = os.path.join( os.getcwd(), newFolder )
-	Path( pwd ).mkdir( parents = True, exist_ok=True )
+	global CWD
+	CWD = os.path.join( os.getcwd(), newFolder )
+	Path( CWD ).mkdir( parents = True, exist_ok=True )
 
 	r = requests.get( 'https://thuvientho.com/' )
 	dom = BeautifulSoup( r.text, 'html.parser' )
@@ -96,7 +97,7 @@ def Crawl( newFolder = None ):
 
 	# loop over mainpage to get category
 	for eachCategory in rootCategory.children:
-		loopCat( eachCategory )
+		loopCategory( eachCategory )
 
-	with open( os.path.join( pwd, f'total.txt' ), 'w+' ) as file:
+	with open( os.path.join( CWD, f'total.txt' ), 'w+' ) as file:
 		file.write( json.dumps( total ) )

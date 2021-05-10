@@ -1,0 +1,4 @@
+requests==2.23.0
+python-slugify==4.0.1
+bs4==0.0.1
+pathlib==1.0.1
