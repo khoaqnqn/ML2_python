@@ -10,8 +10,8 @@ def Plot( data = None, category = '', dataset = 'dataset' ):
 
     Path( figs ).mkdir( parents = True, exist_ok=True )
 
-    plt.figure()
-
+    plt.figure( figsize = ( 18, 3 ) )
+    plt.tight_layout( pad= 3.0 )
     plt.grid( True )
     plt.ylabel( 'Count items' )
 
