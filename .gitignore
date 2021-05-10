@@ -3,3 +3,4 @@ __pycache__
 figs
 *.ipynb
 .DS_*
+dataset-*
