@@ -45,6 +45,9 @@ def main():
         readLabel = ReadLabel( category, dataset, enableMultiProcessing )
 
         standardization = Standardization( readLabel[ 0 ] )
+
+        print( standardization )
+
         Plot( standardization, readLabel[ 1 ], dataset )
 
 if __name__ == '__main__':

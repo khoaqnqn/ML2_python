@@ -11,7 +11,6 @@ def Plot( data = None, category = '', dataset = 'dataset' ):
     Path( figs ).mkdir( parents = True, exist_ok=True )
 
     for i in data:
-        print( i )
         plt.figure( 1 )
         plt.grid( True )
         plt.ylabel( 'Count items' )
