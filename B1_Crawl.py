@@ -8,6 +8,7 @@ from pathlib import Path
 
 total = {}
 roundedItemsPerCategory = 500
+roundedCategories = 5
 CWD = ''
 
 def getPoemAndCrawl( thumbDOM, parentDir ):
@@ -86,22 +87,28 @@ def loopCategory( eachCategory ):
 
     return 1
 
-def Crawl( newFolder = None, ItemsPerCategory = roundedItemsPerCategory ):
+def Crawl( newFolder = None, categories = roundedCategories, ItemsPerCategory = roundedItemsPerCategory ):
     global CWD
     global roundedItemsPerCategory
+    global roundedCategories
 
     CWD = os.path.join( os.getcwd(), newFolder )
     Path( CWD ).mkdir( parents = True, exist_ok=True )
 
     roundedItemsPerCategory = int( ItemsPerCategory )
+    roundedCategories = int( categories )
 
     r = requests.get( 'https://thuvientho.com/' )
     dom = BeautifulSoup( r.text, 'html.parser' )
     rootCategory = dom.find( 'ul', { 'class': 'menu-sub-content' } )
 
+    catCount = 0
+
     # loop over mainpage to get category
     for eachCategory in rootCategory.children:
-        loopCategory( eachCategory )
+        if loopCategory( eachCategory ): catCount += 1
+
+        if catCount >= roundedCategories: break
 
     with open( os.path.join( CWD, f'total.txt' ), 'w+' ) as file:
         file.write( json.dumps( total ) )

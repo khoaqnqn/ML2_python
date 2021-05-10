@@ -11,12 +11,15 @@ HELP = '''
 -d:folder-name  : for new dataset with folder-name ( non-space separated )
 
 -i:30           : for max items of each category
+
+-c:5            : for max categories
 '''
 
 def main():
     dataset = 'dataset'
     enableMultiProcessing = False
     maxItems = 3
+    maxCategories = 3
 
     # collect argv from cmd
     if sys.argv and len( sys.argv ) >= 2:
@@ -35,9 +38,13 @@ def main():
             if opt[ :3 ] == '-i:':
                 maxItems = opt[ 3: ]
 
+            if opt[ :3 ] == '-c:':
+                maxCategories = opt[ 3: ]
+
         # collect new dataset
         if dataset != 'dataset'\
-            and not os.path.exists( os.path.join( os.getcwd(), dataset ) ): Crawl( dataset, maxItems )
+            and not os.path.exists( os.path.join( os.getcwd(), dataset ) ):
+            Crawl( dataset, maxCategories, maxItems )
 
     # loop over each category
     for category in os.listdir( os.path.join( os.getcwd(), dataset ) ):
