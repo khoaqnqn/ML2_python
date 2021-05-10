@@ -31,7 +31,7 @@ def main():
 
 		# collect new dataset
 		if dataset != 'dataset'\
-			and not os.path.exists( os.path.join( os.getcwd() ), dataset ): Crawl( dataset )
+			and not os.path.exists( os.path.join( os.getcwd(), dataset ) ): Crawl( dataset )
 
 	# loop over each category
 	for category in os.listdir( os.path.join( os.getcwd(), dataset ) ):
