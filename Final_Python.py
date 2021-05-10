@@ -26,8 +26,8 @@ def main():
 			if opt[ :3 ] == '-mp':
 				enableMultiProcessing = True
 
-			if opt[ :2 ] == '-d':
-				dataset = opt[ 2: ]
+			if opt[ :3 ] == '-d:':
+				dataset = opt[ 3: ]
 
 		# collect new dataset
 		if dataset != 'dataset'\
