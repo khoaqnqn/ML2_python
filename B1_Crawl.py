@@ -53,7 +53,7 @@ def getPoemAndCrawl( thumbDOM, parentDir ):
     end = time.time()
     print( '{:2.2f} (s) - {} - {}'.format( end - start, aTag.text, aTag[ 'href' ] ) )
 
-    return 1
+    return total[ parentDir ][ 'i' ]
 
 def loopPage( url, page, folderName ):
     URL = f'{ url }/page/{ page }'
@@ -62,7 +62,9 @@ def loopPage( url, page, folderName ):
     poemsInPage = domPage.findAll( 'h2', { 'class': 'post-box-title' } );
 
     for thumbDOM in poemsInPage:
-        getPoemAndCrawl( thumbDOM, folderName )
+        curCount = getPoemAndCrawl( thumbDOM, folderName )
+
+        if curCount >= roundedItemsPerCategory: break
 
     nextPage = domPage.find( 'span', { 'id': 'tie-next-page' } )
     try: return nextPage.find( 'a' ).text

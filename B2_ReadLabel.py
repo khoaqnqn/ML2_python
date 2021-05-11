@@ -35,7 +35,7 @@ def ReadLabel( label = None, newFolder = 'dataset', multi = False ):
     if multi:
         # make colors
         pool = mp.Pool( mp.cpu_count() - 1 )
-        results = pool.starmap( ReadItem, [ ( item, labelPath ) for item in tqdm( os.listdir( labelPath ) ) ] )
+        results = pool.starmap( ReadItem, [ ( item, labelPath ) for item in tqdm( os.listdir( labelPath ), label ) ] )
         pool.close()
     else:
         results = [ ReadItem( item, labelPath ) for item in os.listdir( labelPath ) ]
