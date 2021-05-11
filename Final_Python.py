@@ -18,8 +18,8 @@ HELP = '''
 def main():
     dataset = 'dataset'
     enableMultiProcessing = False
-    maxItems = 3
-    maxCategories = 3
+    maxItems = 0
+    maxCategories = 0
 
     # collect argv from cmd
     if sys.argv and len( sys.argv ) >= 2:

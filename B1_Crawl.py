@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 
 total = {}
-roundedItemsPerCategory = 500
-roundedCategories = 5
+roundedItemsPerCategory = 0
+roundedCategories = 0
 CWD = ''
 
 def getPoemAndCrawl( thumbDOM, parentDir ):
@@ -64,7 +64,7 @@ def loopPage( url, page, folderName ):
     for thumbDOM in poemsInPage:
         curCount = getPoemAndCrawl( thumbDOM, folderName )
 
-        if curCount >= roundedItemsPerCategory: break
+        if roundedItemsPerCategory and curCount >= roundedItemsPerCategory: break
 
     nextPage = domPage.find( 'span', { 'id': 'tie-next-page' } )
     try: return nextPage.find( 'a' ).text
@@ -81,11 +81,11 @@ def loopCategory( eachCategory ):
     total[ folderName ] = { 'i': 0, 'items': [], 'ignoredItems': [] }
 
     hasLoop = True
-    curPage = 1
+    curPage = 0
 
-    while hasLoop and total[ folderName ][ 'i' ] < roundedItemsPerCategory:
-        hasLoop = loopPage( aTag[ 'href' ], curPage, folderName )
+    while hasLoop and ( not roundedItemsPerCategory or ( roundedItemsPerCategory and total[ folderName ][ 'i' ] < roundedItemsPerCategory ) ):
         curPage += 1
+        hasLoop = loopPage( aTag[ 'href' ], curPage, folderName )
 
     return 1
 
@@ -110,7 +110,7 @@ def Crawl( newFolder = None, categories = roundedCategories, ItemsPerCategory = 
     for eachCategory in rootCategory.children:
         if loopCategory( eachCategory ): catCount += 1
 
-        if catCount >= roundedCategories: break
+        if roundedCategories and catCount >= roundedCategories: break
 
     with open( os.path.join( CWD, f'total.txt' ), 'w+' ) as file:
         file.write( json.dumps( total ) )
