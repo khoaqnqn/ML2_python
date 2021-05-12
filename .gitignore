@@ -4,3 +4,4 @@ figs
 *.ipynb
 .DS_*
 dataset-*
+.spyproj*
